@@ -125,6 +125,7 @@ function results(){
     $("#choiceContainer").hide();
     $("#result").show();
     $("#correct").text(correctAnswers + " out of " + totalQuestions + " correct!");
+    //check what kind of player the user is
     if(correctAnswers == totalQuestions){
         $("#trekimg").html('<img src="assets/images/awesometrek.gif" />');
     }
