@@ -115,8 +115,16 @@ function results(){
     $("#quizContainer").hide();
     $("#choiceContainer").hide();
     $("#result").show();
-    $("#correct").text(correctAnswers + " questions out of " + totalQuestions + " correct!");
-    // $("#tryAgain").show();
+    $("#correct").text(correctAnswers + " out of " + totalQuestions + " correct!");
+    if(correctAnswers == totalQuestions){
+        $("#trekimg").html('<img src="assets/images/awesometrek.gif" />');
+    }
+    else if(correctAnswers > 3){
+        $("#trekimg").html('<img src="assets/images/oktrek.gif" />');
+    }
+    else {
+        $("#trekimg").html('<img src="assets/images/sadtrek.gif" />');
+    }
     return
 }
 
