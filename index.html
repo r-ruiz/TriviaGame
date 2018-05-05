@@ -22,43 +22,38 @@
     <div id="main" class="container pb-4 pt-4 mt-5 text-center border">
         <div class="row">
             <div class="col mb-3">
-                <div class="text-center">
-                    <h2 id="gametime">
-                         
+                <div id="time" class="text-center">
+                    <h2 id="gametime"> 
                     </h2>    
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div id="quizContainer" class="row">
             <div class="col text-center">
+                <div id="image">
+                </div>
                 <h2 id="question">
                     question
                 </h2>
             </div>
         </div>
-        <div class="row">
-            <div class="col text-center">
-                <h2 id="answer">
-                </h2>
-                <p id="image">
-                </p>
+        <div id="choiceContainer" class="row">
+            <div class="col">
+                <label class="option"><input type="radio" name="option" value="1" /><span id="opt1">test</span></label><br />
+                <label class="option"><input type="radio" name="option" value="2" /><span id="opt2">test2</span></label><br />
+                <label class="option"><input type="radio" name="option" value="3" /><span id="opt3">test3</span></label><br />
+                <label class="option"><input type="radio" name="option" value="4" /><span id="opt4">test4</span></label><br />
+                <button id="nextBtn" class="next-btn" onclick="nextQuestion();">
+                    Next Question
+                </button>
             </div>
         </div>
-        <div class="row">
+        <div id = "result" class="row">
             <div class="col text-center">
-                <h2>
-                    <label><input class="choices" name value="a"></label>
-                    <label><input class="choices" name value="b"></label>
-                    <label><input class="choices" name value="c"></label>
-                    <label><input class="choices" name value="d"></label>
-                </h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col text-center">
-                <h2 id="tryagain">
-                    go again?
-                </h2>
+                <div id="correct"></div>
+                <button id="startOver">
+                    Try Again
+                </button>
             </div>
         </div>
     </div>

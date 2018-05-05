@@ -1,74 +1,72 @@
 // Questions for the quiz
 
 var theQuiz =[{
-        question      :"What is the Klingon's spirtual leader that all houses of the Empire follow?",
-        choices       :{
-            a:  "Kahless", 
-            b:  "Kortar", 
-            c:  "Fek'lhr", 
-            d:  "T’Kuvma"},
-        correctAnswer :"a",
-        image         :"assets/images/q1.jpg",
+        "question"      :"Who is the Klingon's spirtual leader that all houses of the Empire follow?",
+        "option1":  "Kahless", 
+        "option2":  "Kortar", 
+        "option3":  "Fek'lhr", 
+        "option4":  "T’Kuvma",
+        "correctAnswer" :"1",
+        "image"         :"assets/images/q1.jpg",
     },
     {
-        question      :"Who was the first documented Captain of the USS Enterprise NCC-1701?",
-        choices       :{
-            a:  "Kirk", 
-            b:  "Archer", 
-            c:  "April", 
-            d:  "Pike"},
-        correctAnswer :"c",
-        image         :"assets/images/q2.png",
+        "question"      :"Who was the first documented Captain of the USS Enterprise NCC-1701?",
+        "option1":  "Kirk", 
+        "option2":  "Archer", 
+        "option3":  "April", 
+        "option4":  "Pike",
+        "correctAnswer" :"3",
+        "image"         :"assets/images/q2.png",
     },
     {
-        question      :"What is the max warp-factor that has been achieved using standard warp technology, and not through trans-warp or cosmic anomalies?",
-        choices       :{
-            a:  "9.6", 
-            b:  "9.75", 
-            c:  "9.9", 
-            d:  "10.0"},
-        correctAnswer :"c",
-        image         :"assets/images/q3.jpg",
+        "question"      :"What is the max warp-factor that has been achieved using standard warp technology, and not through trans-warp or cosmic anomalies?",
+        "option1":  "9.6", 
+        "option2":  "9.75", 
+        "option3":  "9.9", 
+        "option4":  "10.0",
+        "correctAnswer" :"3",
+        "image"         :"assets/images/q3.jpg",
     },
     {
-        question      :"Transporters have compensators to correct which law of quantium mechanics that it violates",
-        choices       :{
-            a:  "Canonical Quantization", 
-            b:  "Uncertainty Principle", 
-            c:  "Phase Space Formulation", 
-            d:  "Feynman–Stueckelberg interpretation"},
-        correctAnswer :"b",
-        image         :"assets/images/q4.gif",
+        "question"      :"Transporters have compensators to correct which law of quantium mechanics that it violates",
+        "option1":  "Canonical Quantization", 
+        "option2":  "Uncertainty Principle", 
+        "option3":  "Phase Space Formulation", 
+        "option4":  "Feynman–Stueckelberg interpretation",
+        "correctAnswer" :"2",
+        "image"         :"assets/images/q4.gif",
     },
     {
-        question      :"What ritual do Vulcans undergo to prove they are purged of all emotions?",
-        choices       :{
-            a:  "Koon-ut-kal-iff-ee", 
-            b:  "Kahs-wan", 
-            c:  "Kolinahr", 
-            d:  "Kobiyashi Maru"},
-        correctAnswer :"c",
-        image         :"assets/images/q5.png",
+        "question"      :"What ritual do Vulcans undergo to prove they are purged of all emotions?",
+        "option1":  "Koon-ut-kal-iff-ee", 
+        "option2":  "Kahs-wan", 
+        "option3":  "Kolinahr", 
+        "option4":  "Kobiyashi Maru",
+        "correctAnswer" :"3",
+        "image"         :"assets/images/q5.png",
     },
     {
-        question      :"Where in the neutral zone was the Kobayashi Maru when Saavik began the rescue mission?",
-        choices       :{
-            a:  "Beta Delta, Section 5", 
-            b:  "Theta Delta Omicron 5", 
-            c:  "Altair Vi, Section Epsilon", 
-            d:  "Gamma Hydra, Section 10"},
-        correctAnswer :"d",
-        image         :"assets/images/q6.gif",
+        "question"      :"Where in the neutral zone was the Kobayashi Maru when Saavik began the rescue mission?",
+        "option1":  "Beta Delta, Section 5", 
+        "option2":  "Theta Delta Omicron 5", 
+        "option3":  "Altair Vi, Section Epsilon", 
+        "option4":  "Gamma Hydra, Section 10",
+        "correctAnswer" :"4",
+        "image"         :"assets/images/q6.gif",
     }
 ];
 
 //prep the global variables for tracking correct answers, quiz time, and questions
 
-var qTime = 15;
-const TOTALQUESTIONS = 6;
+var qTime = 30;
+var totalQuestions = theQuiz.length;
 var currentQuestion = 0;
 var correctAnswers = 0;
-var finishQuiz = false;
+var questionElem = $("#question");
+var choice1 = $("#opt1");
+var choice2 = $("#opt2");
+var choice3 = $("#opt3");
+var choice4 = $("#opt4");
 
 function timer(){
     var countDown = setInterval(function(){
@@ -76,31 +74,62 @@ function timer(){
         $("#gametime").text("Time Left: " + qTime);
         if (qTime <= 0){
             clearInterval(countDown);
+            results();
         }
     }, 1000);
 }
 
-function makeQuiz() {
-    //randomize the questions
-    var pick = theQuiz[Math.floor(Math.random()*TOTALQUESTIONS)];
-    var answers = pick.choices;
-    var options = [];
-    var solution = pick.correctAnswer;
-    var imageAnswer = pick.image;
-    $("#question").html(pick.question);
+function buildQuiz(questionIndex){
+    var pick =theQuiz[questionIndex];
+    $("#image").html('<img src="' + pick.image + '" />');
+    questionElem.text(pick.question);
+    choice1.text(pick.option1);
+    choice2.text(pick.option2);
+    choice3.text(pick.option3);
+    choice4.text(pick.option4);
+}
 
-    //set the countdown
-    timer();
-    
-    //render the html
-    $.each(pick.choices, function(index, value){
-        console.log(value);
-        options.push(value);
-    });
+function nextQuestion() {
+    var userSelected = document.querySelector("input[type=radio]:checked");
+    if(!userSelected){
+        alert("Please select an option");
+    }
+    var answer = userSelected.value;
+    if(theQuiz[currentQuestion].correctAnswer == answer){
+        correctAnswers++;
+    }
+    userSelected.checked = false;
+    currentQuestion++;
+    if(currentQuestion == totalQuestions - 1){
+        $("#nextBtn").text("Finish");
+    }
+    if(currentQuestion == totalQuestions){
+        results();
+        return
+    }
+    buildQuiz(currentQuestion);
+}
+
+function results(){
+    $("#time").hide();
+    $("#quizContainer").hide();
+    $("#choiceContainer").hide();
+    $("#result").show();
+    $("#correct").text(correctAnswers + " questions out of " + totalQuestions + " correct!");
+    // $("#tryAgain").show();
+    return
+}
+
+function restart() {
+    $("#result").hide();
+    // $("#tryAgain").hide();
+    $("#startOver").on("click", function (){
+        location.reload();
+    })
 }
 
 $(document).ready(function(){
-    makeQuiz();
-    $("#tryagain").hide();
-    $("#answer").hide();
+    timer();
+    buildQuiz(currentQuestion);
+    restart();
 });
