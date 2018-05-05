@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 </head>
 <body>
@@ -19,40 +20,58 @@
             Star Trek Challenge Quiz!
         </h1>
     </header>
-    <div id="main" class="container pb-4 pt-4 mt-5 text-center border">
-        <div class="row">
-            <div class="col mb-3">
+    <div id="main" class="container pb-4 pt-4 mt-5">
+        <div id="quizContainer" class="row">
+            <div class="col-md-6 text-center">
+                <div id="image">
+                </div>
+                <h3 id="question">
+                    question
+                </h3>
+                <hr />
                 <div id="time" class="text-center">
                     <h2 id="gametime"> 
                     </h2>    
                 </div>
             </div>
-        </div>
-        <div id="quizContainer" class="row">
-            <div class="col text-center">
-                <div id="image">
+            <div id="choiceContainer" class="col-md-6">
+                <div class-"row">
+                    <div class="col">
+                        <h2>
+                            Choices:
+                        </h2>
+                    </div>
                 </div>
-                <h2 id="question">
-                    question
-                </h2>
+                <div class="row">
+                    <div class="col border mb-3">
+                        <label class="radiocontainer"><input type="radio" name="radio" value="1" /><span class="checkmark" id="opt1">test</span></label><br />
+                        <label class="radiocontainer"><input type="radio" name="radio" value="2" /><span class="checkmark" id="opt2">test2</span></label><br />
+                        <label class="radiocontainer"><input type="radio" name="radio" value="3" /><span class="checkmark" id="opt3">test3</span></label><br />
+                        <label class="radiocontainer"><input type="radio" name="radio" value="4" /><span class="checkmark" id="opt4">test4</span></label><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <!--empty-->
+                    </div>
+                    <div class="col-md-4 pb-3">
+                        <button type="button" id="nextBtn" class="next-btn btn btn-info" onclick="nextQuestion();">
+                            Next Question
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <!--empty-->
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="choiceContainer" class="row">
-            <div class="col">
-                <label class="option"><input type="radio" name="option" value="1" /><span id="opt1">test</span></label><br />
-                <label class="option"><input type="radio" name="option" value="2" /><span id="opt2">test2</span></label><br />
-                <label class="option"><input type="radio" name="option" value="3" /><span id="opt3">test3</span></label><br />
-                <label class="option"><input type="radio" name="option" value="4" /><span id="opt4">test4</span></label><br />
-                <button id="nextBtn" class="next-btn" onclick="nextQuestion();">
-                    Next Question
-                </button>
+                
             </div>
         </div>
         <div id = "result" class="row">
             <div class="col text-center">
-                <div id="correct"></div>
-                <div id="trekimg"></div>
-                <button id="startOver">
+                <div id="correct"></div><br />
+                <div id="trekimg"></div><br />
+                <button type="button" class="btn btn-info" id="startOver">
                     Try Again
                 </button>
             </div>

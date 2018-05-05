@@ -1,3 +1,4 @@
+
 // Questions for the quiz
 
 var theQuiz =[{
@@ -79,6 +80,8 @@ function timer(){
     }, 1000);
 }
 
+// Building the initial display for the questions and answers
+
 function buildQuiz(questionIndex){
     var pick =theQuiz[questionIndex];
     $("#image").html('<img src="' + pick.image + '" />');
@@ -89,11 +92,15 @@ function buildQuiz(questionIndex){
     choice4.text(pick.option4);
 }
 
+// This function is triggered when the user click on the next button
+
 function nextQuestion() {
     var userSelected = document.querySelector("input[type=radio]:checked");
+    // If the user does not select anything
     if(!userSelected){
         alert("Please select an option");
     }
+    // If the user guess correctly, the answer is added
     var answer = userSelected.value;
     if(theQuiz[currentQuestion].correctAnswer == answer){
         correctAnswers++;
@@ -109,6 +116,8 @@ function nextQuestion() {
     }
     buildQuiz(currentQuestion);
 }
+
+//dumping the correct answers when either time runs out or all questions have been answered
 
 function results(){
     $("#time").hide();
@@ -128,6 +137,7 @@ function results(){
     return
 }
 
+//restart the game
 function restart() {
     $("#result").hide();
     // $("#tryAgain").hide();

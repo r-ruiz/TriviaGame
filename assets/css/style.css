@@ -1,6 +1,72 @@
+body {
+    font-family: 'Share Tech', sans-serif;
+    background-image: url("../images/warp.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
 img {
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
-    width: 350px;
+}
+
+.jumbotron{
+    background-image: url("../images/ship2.jpg");
+}
+.col-md-4, .col, .col-md-6 {
+    background-color: #eee;
+}
+
+#correct {
+    font-size: 30px;
+}
+
+/* Setting up new style radio buttons taking an example from w3Schools */
+.radiocontainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 30px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radiocontainer input {
+    position: relative;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radiocontainer:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radiocontainer input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
 }
